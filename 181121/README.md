@@ -30,14 +30,36 @@ app.use('/',router);
 <B>주의</B>
 The *express.static* middleware is separate from *res.sendFile*
 <b>사용</b> 
+```javascript
+    path = require('path');
 1. res.sendFile(path.join(__dirname, '../public', 'index1.html'));
 2. res.sendFile('index1.html', { root: path.join(__dirname, '../public') });
 
+```
 <hr/>
 
 ##  1. RequestParamApp.js
 <ul>
-<li></li>
+<li>body-parser</li>
+GET, POST로 오는 값 받아오는 미들웨어
+
+```javascript
+//선언
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended : false}));
+app.use(bodyParser.json());
+//사용
+//req.body는 post로 오는값 , req.query는 get으로 오는 값
+var paramId = req.body.id || req.query.id;              
+var paramPassword = req.body.pass || req.query.pass;
+```
+<li>static</li>
+
+```javascript
+var static = require('serve-static');
+app.use(static(path.join(__dirname,'public')));                     //index.html이 메인페이지로 들어감.
+
+```
 </ul>
 
 ##  2. sessionApp.js
@@ -80,12 +102,20 @@ app.use(errorHandler);
 ```
 </ul>
 
-### 3. CookieParserApp.js
+## 3. CookieParserApp.js
 
 <li>cookie-parser</li>
 
 ```javascript
 var cookieParser = require('cookie-parser');
-app.use(cookieParser());
+app.use(express.cookieParser());
+//set Cookie
+res.cookie('user',{
+        id: ' mike',
+        name : 'name',
+        authorized : true
+    });
+// see Cookie
+res.send(req.cookies);
 
 ```

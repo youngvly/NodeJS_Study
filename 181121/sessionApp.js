@@ -64,5 +64,5 @@ app.use(errorHandler);
 app.use('/',router);
 http.createServer(app).listen(3000,function(){
     console.log("서버시작");
-})
+});
 
