@@ -9,9 +9,9 @@
 ./ <br/>
 └----/node_modules<br/>
 └----/routes              //라우터들을 개별저장. 조합은 index에서 할예정<br/>
-    └--- **.js<br/>
+&emsp;&emsp;    └--- **.js<br/>
 └----/schema              //Schema(DBModel)저장<br/>
-    └--- **.js <br/>
+&emsp;&emsp;    └--- **.js <br/>
 └----config.js           //설정 정보 저장<br/>
 &emsp;&emsp;  - db port, url , id, pass<br/>
 &emsp;&emsp;  - db_schema [{<br/>
